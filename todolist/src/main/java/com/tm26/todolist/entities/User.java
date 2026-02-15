@@ -13,10 +13,17 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "users")
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//AUTO_INCREMENT: egenrate value means:Hibernate how to generate the primary key
+    //AUTO_INCREMENT: egenrate value means:Hibernate how to generate the primary key
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+    @SequenceGenerator(
+            name = "user_seq",
+            sequenceName = "user_seq",
+            allocationSize = 1
+    )
 
     private Long id;
 
